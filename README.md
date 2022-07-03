@@ -19,7 +19,7 @@ More details of the information will be stored as a json file for further parsin
 
 **Example of json out file:**
 
-```
+```json
 {
     "id": 469773959,
     "body": "$BTC.X $ETH.X something fishy is going on",
@@ -95,7 +95,7 @@ More details of the information will be stored as a json file for further parsin
 
 **Example of csv output file:**
 
-```
+```csv
 num,id,created_at,username,tag,body
 
 0,469773959,2022-07-03T05:30:53Z,Bearish,TheMainCharacter,$BTC.X $ETH.X something fishy is going on
