@@ -1,5 +1,6 @@
-import requests
 import json
+
+import requests
 
 from .utils import add_to_json
 
@@ -13,10 +14,10 @@ def get_url(symbol, next_id=None):
         string: the url to scrape
     """
     if next_id is None:
-        url = "https://api.stocktwits.com/api/2/streams/symbol/{}.json?filter=top&limit=20".format(
+        url = "https://api.stocktwits.com/api/2/streams/symbol/{}.json?filter=all&limit=20".format(
             symbol)
     else:
-        url = "https://api.stocktwits.com/api/2/streams/symbol/{}.json?filter=top&limit=20&max={}".format(
+        url = "https://api.stocktwits.com/api/2/streams/symbol/{}.json?filter=all&limit=20&max={}".format(
             symbol, next_id)
     return url
 
@@ -65,7 +66,7 @@ def init_scrape(outfile, query, num_twits):
 
 def scrape(outfile, query, num_twits):
     """Scrape the data from the url and save to a file
-    
+
     Args:
         outfile (string): the file to save the data to
         query (string): the query to search for (e.g. ETH.X)
