@@ -2,8 +2,8 @@
 
 from datetime import datetime
 
-from src.scraper import scrape
 from src.export import to_csv
+from src.scraper import scrape
 
 
 def main():
