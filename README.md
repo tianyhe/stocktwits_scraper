@@ -11,13 +11,29 @@ Scraped messages details includes:
 - The info of all tags in the message
 - the sentiment tag of the message (if any)
 
-More details of the information will be stored as a json file for further parsing. The selected thumbnails will be stored in a csv file for further analysis.
+Scraped user details includes:
+- The associated message ID
+- The sentiment tag of the message (if any)
+- The user id
+- The username
+- The join date of the user
+- The country of the user
+- The number of followers of the user
+- The number of following of the user
+- The number of posts sent by the user
+- The number of likes given by the user
+- The watchlist count of the user
+- The platform of the user (if any)
+
+More details of the information will be stored as a json file for further parsing. 
+The selected thumbnails will be stored in two separate csv files for further analysis.
+The message details and the user details can be associated by the message ID.
 
 ---
 
 ## Output
 
-**Example of json out file:**
+### Example of json out file:
 
 ```json
 [
@@ -88,22 +104,36 @@ More details of the information will be stored as a json file for further parsin
 ]
 ```
 
-**Example of csv output file:**
+### Example of csv output file:
+
+#### Example of csv output file for the message details:
 
 ```csv
-num,id,created_at,username,tag,body
+num,id,created_at,tag,username,likes,platform,body
 
-0,469773959,2022-07-03T05:30:53Z,Bearish,TheMainCharacter,$BTC.X $ETH.X something fishy is going on
+0,472206234,2022-07-18T00:28:39Z,NULL,StockTraderCapital,0,Android,"$ETH.X longest flag,  soon the flagpole will snap 😆"
 
-1,469773887,2022-07-03T05:28:41Z,Bullish,james2344,today bullish market $ETH.X
+1,472205476,2022-07-18T00:17:28Z,Bearish,EIon__Musk,5,Android,"$SPY short this market with both hands"
 
-2,469773863,2022-07-03T05:28:09Z,NULL,OptionsTrigger,$BTC.X how did this 15 min candle close green!!! Lmao. Brokers really wanted to trigger all the leveraged SLs. Crypto TA is a myth.  $ETH.X $SOL.X
-
+2,472205020,2022-07-18T00:10:52Z,Bullish,staydowngetdown,0,iOS,"$ETH.X yes sir!!!!!!"
 ```
+
+#### Example of csv output file for the user details:
+
+```csv
+num,message_id,tag,user_id,username,join_date,country,followers,following,posts_count,likes_counts,watchlist_counts,platform
+
+0,472206234,NULL,1037324,StockTraderCapital,2017-04-24,US,582,52,35381,14481,31,Android
+
+1,472205691,NULL,1505519,Billionaireclubcollc,2018-05-26,US,8449,3,167850,21811,296,Web
+
+2,472205675,NULL,3719725,ThePoleTrader,2020-07-01,US,11,16,1755,2448,37,iOS
+```
+
 
 ---
 
-## Script
+## Run Script
 
 **Parameters for the scrape**
 | Argument | type | note |
