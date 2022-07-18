@@ -9,7 +9,7 @@ from src.scraper import scrape
 def main():
     """The main function of the scraper"""
     query_symbol = "ETH.X"
-    num_twits = 1000
+    num_twits = 10000
 
     scrape_time_str = datetime.today().strftime('%Y-%m-%d')
     json_outfile_name: str = f"./data/{scrape_time_str}.json"

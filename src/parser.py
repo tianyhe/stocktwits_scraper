@@ -28,7 +28,7 @@ def message_info_to_csv(input_file: str, output_file: str, num_twits: int) -> No
             platform = get_message_platform(message)
             username = get_username(user)
             writer.writerow([
-                num, id, timestamp, tag, username, likes, platform, body[:30] + '...'
+                num, id, timestamp, tag, username, likes, platform, body
             ])
             num += 1
 
@@ -54,7 +54,7 @@ def user_info_to_csv(input_file: str, output_file: str, num_twits: int) -> None:
         'following',
         'posts_count',
         'likes_counts',
-        'watchlist_counts'
+        'watchlist_counts',
         'platform',
     ]
 
@@ -129,7 +129,8 @@ def get_message_body(message):
     Returns:
         message_body (string): the message body
     """
-    return message['body']
+    message_str = message['body'].strip().replace('\n', ' ')
+    return message_str
 
 
 def get_message_likes(message):
@@ -154,8 +155,11 @@ def get_message_platform(message):
     Returns:
         message_platform (string): the message platform
     """
-    platform_str = message['source']['title']
-    return platform_str.split(' ')[-1]
+    try:
+        platform_str = message['source']['title'].strip().split(' ')[-1]
+        return platform_str
+    except:
+        return 'NULL'
 
 
 def get_user_info(message):
