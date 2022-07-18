@@ -27,7 +27,7 @@ Scraped user details includes:
 
 More details of the information will be stored as a json file for further parsing. 
 The selected thumbnails will be stored in two separate csv files for further analysis.
-The message details and the user details can be associated by the message ID.
+The message details and the user details can be associated with the message ID.
 
 ---
 
