@@ -26,14 +26,22 @@ Scraped user details includes:
 - The platform of the user (if any)
 
 More details of the information will be stored as a json file for further parsing. 
-The selected thumbnails will be stored in two separate csv files for further analysis.
-The message details and the user details can be associated with the message ID.
 
 ---
 
 ## Output
 
-### Example of json out file:
+All historical scraped data up to the new scrape time will be stored in two separate json files. - `./data/message.json` and `./data/user.json`
+  * new scraped message data will be added to the 'message.json' file
+  * new scraped user data will be added/updated to the 'user.json' file (no duplicates will be added)
+
+The selected thumbnails will be stored in two separate csv files for further analysis. - `./data/message.csv` and `./data/user.csv`
+
+Data from each scrape will be stored in the `./data/scrape_data` folder name by the scraped date.
+
+The message details and the user details can be associated with the message ID.
+
+### Example of the message json output file:
 
 ```json
 [
@@ -104,6 +112,46 @@ The message details and the user details can be associated with the message ID.
 ]
 ```
 
+### Example of the user info json output file
+
+```json
+{
+  "1037324": {
+    "username": "StockTraderCapital",
+    "join_date": "2017-04-24",
+    "country": "US",
+    "followers": 582,
+    "following": 52,
+    "posts_count": 35717,
+    "likes_count": 14606,
+    "watchlist_count": 32,
+    "platform": "Android"
+  },
+  "1505519": {
+    "username": "Billionaireclubcollc",
+    "join_date": "2018-05-26",
+    "country": "US",
+    "followers": 8479,
+    "following": 3,
+    "posts_count": 169697,
+    "likes_count": 21811,
+    "watchlist_count": 296,
+    "platform": "Web"
+  },
+  "3719725": {
+    "username": "ThePoleTrader",
+    "join_date": "2020-07-01",
+    "country": "US",
+    "followers": 11,
+    "following": 16,
+    "posts_count": 1756,
+    "likes_count": 2448,
+    "watchlist_count": 37,
+    "platform": "iOS"
+  }
+}
+```
+
 ### Example of csv output file:
 
 #### Example of csv output file for the message details:
@@ -111,11 +159,11 @@ The message details and the user details can be associated with the message ID.
 ```csv
 num,id,created_at,tag,username,likes,platform,body
 
-0,472206234,2022-07-18T00:28:39Z,NULL,StockTraderCapital,0,Android,"$ETH.X longest flag,  soon the flagpole will snap 😆"
+0,472205476,2022-07-18T00:17:28Z,Bearish,EIon__Musk,5335932,5,Android,$SPY short this market with both hands  $BTC.X $ETH.X $NVDA
 
-1,472205476,2022-07-18T00:17:28Z,Bearish,EIon__Musk,5,Android,"$SPY short this market with both hands"
+1,472205225,2022-07-18T00:13:42Z,NULL,Billionaireclubcollc,1505519,0,Web,"Lightspeed Venture Launches a Blockchain-Focused Team, Multicoin Capital Raises $430M https://www.billionaireclubcollc.com/lightspeed-venture-launches-a-blockchain-focused-team-multicoin-capital-raises-430m/ $BTC.X $ETC.X $ETH.X $DOGE.X $MITH.X"
 
-2,472205020,2022-07-18T00:10:52Z,Bullish,staydowngetdown,0,iOS,"$ETH.X yes sir!!!!!!"
+2,472205020,2022-07-18T00:10:52Z,Bullish,staydowngetdown,5455336,0,iOS,$ETH.X yes sir!!!!!!
 ```
 
 #### Example of csv output file for the user details:
@@ -140,6 +188,14 @@ num,message_id,tag,user_id,username,join_date,country,followers,following,posts_
 | ------------- | ------------- | ------------- |
 | query_symbol | string | the tag to search for (e.g. "ETH.X", "BTC.X") |
 | num_twits | int | the number of twits to scrape (default to 1000 entries of the most recent twits) |
+
+---
+
+## Updates
+- 2022-07-03: Initial release
+- 2022-07-18: Add the function to get the user characteristics
+- 2022-07-24: Fix duplicate users in the user info output
+- 2022-07-24: Add the function to store all historical data in json file
 
 ---
 
