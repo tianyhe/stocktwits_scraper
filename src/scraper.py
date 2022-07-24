@@ -1,3 +1,5 @@
+"""Functions that used to scrape the message data from the url"""
+
 import json
 
 import requests
@@ -15,10 +17,10 @@ def get_url(symbol, next_id=None):
     """
     if next_id is None:
         url = "https://api.stocktwits.com/api/2/streams/symbol/{}.json?filter=all&limit=20".format(
-            symbol)
+                symbol)
     else:
         url = "https://api.stocktwits.com/api/2/streams/symbol/{}.json?filter=all&limit=20&max={}".format(
-            symbol, next_id)
+                symbol, next_id)
     return url
 
 
@@ -35,7 +37,7 @@ def get_response(url, headers=None, payload=None):
     if headers is None:
         headers = {
             'User-Agent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36',
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.53 Safari/537.36',
         }
     if payload is None:
         payload = {}
@@ -59,7 +61,7 @@ def init_scrape(outfile, query, num_twits):
     outfile = open(outfile, "w")
     outfile.write(json.dumps(response['messages'], indent=4))
     print(
-        f"{len(response['messages'])}/{num_twits} messages added to the file")
+            f"{len(response['messages'])}/{num_twits} messages added to the file")
     twits_left = num_twits - len(response['messages'])
     return response['cursor']['max'], twits_left
 
